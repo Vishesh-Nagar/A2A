@@ -15,7 +15,7 @@ All of them work together seamlessly via A2A discovery and JSON-RPC.
 
 ```bash
 version_3_multi_agent/
-├── .env                         # Your GOOGLE_API_KEY (not committed)
+├── .env                        # Your GOOGLE_API_KEY (not committed)
 ├── pyproject.toml              # Dependency config
 ├── README.md                   # You are reading it!
 ├── app/
@@ -49,15 +49,14 @@ version_3_multi_agent/
 1. **Clone & navigate**
 
     ```bash
-    git clone https://github.com/theailanguage/a2a_samples.git
-    cd a2a_samples/version_3_multi_agent
+    git clone https://github.com/Vishesh-Nagar/A2A.git
     ```
 
 2. **Create & activate a venv**
 
     ```bash
     python3 -m venv .venv
-    source .venv/bin/activate
+    .venv/Scripts/Activate.ps1
     ```
 
 3. **Install dependencies**
