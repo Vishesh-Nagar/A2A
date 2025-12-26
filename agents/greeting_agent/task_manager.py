@@ -65,7 +65,7 @@ class GreetingTaskManager(InMemoryTaskManager):
             SendTaskResponse: A JSON-RPC response with the completed Task
         """
 
-        logger.info(f"GreetingTaskManager received task {request.params.id}")
+        # logger.info(f"GreetingTaskManager received task {request.params.id}")
 
         task = await self.upsert_task(request.params)
 

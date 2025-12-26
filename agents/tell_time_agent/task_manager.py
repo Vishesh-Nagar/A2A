@@ -46,7 +46,7 @@ class AgentTaskManager(InMemoryTaskManager):
         5. Return the updated task to the caller
         """
 
-        logger.info(f"Processing new task: {request.params.id}")
+        # logger.info(f"Processing new task: {request.params.id}")
 
         task = await self.upsert_task(request.params)
 

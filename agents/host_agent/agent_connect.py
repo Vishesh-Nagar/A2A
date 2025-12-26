@@ -28,7 +28,7 @@ class AgentConnector:
 
         self.client = A2AClient(url=base_url)
 
-        logger.info(f"AgentConnector: initialized for {self.name} at {base_url}")
+        # logger.info(f"AgentConnector: initialized for {self.name} at {base_url}")
 
     async def send_task(self, message: str, session_id: str) -> Task:
         """
@@ -52,8 +52,8 @@ class AgentConnector:
 
         task_result = await self.client.send_task(payload)
 
-        logger.info(
-            f"AgentConnector: received response from {self.name} for task {task_id}"
-        )
+        # logger.info(
+        #     f"AgentConnector: received response from {self.name} for task {task_id}"
+        # )
 
         return task_result

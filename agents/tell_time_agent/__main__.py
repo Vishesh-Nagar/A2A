@@ -18,7 +18,7 @@ def main(host, port):
     This function sets up everything needed to start the agent server.
     You can run it via: `python -m agents.google_adk --host 0.0.0.0 --port 12345`
     """
-
+    print(f"\n🚀 Starting TimeAgent on http://{host}:{port}/\n")
     capabilities = AgentCapabilities(streaming=False)
 
     skill = AgentSkill(

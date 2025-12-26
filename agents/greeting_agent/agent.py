@@ -37,6 +37,8 @@ class GreetingAgent:
 
         self.user_id = "greeting_user"
 
+        self.name = "Vishesh"
+
         self.runner = Runner(
             app_name=self.orchestrator.name,
             agent=self.orchestrator,
@@ -131,46 +133,7 @@ class GreetingAgent:
 
     async def invoke(self, query: str, session_id: str) -> str:
         """
-        🔄 Public: send a user query through the orchestrator LLM pipeline,
-        ensuring session reuse or creation, and return the final text reply.
-        Note - function updated 28 May 2025
-        Summary of changes:
-        1. Agent's invoke method is made async
-        2. All async calls (get_session, create_session, run_async)
-            are awaited inside invoke method
-        3. task manager's on_send_task updated to await the invoke call
-
-        Reason - get_session and create_session are async in the
-        "Current" Google ADK version and were synchronous earlier
-        when this lecture was recorded. This is due to a recent change
-        in the Google ADK code
-        https://github.com/google/adk-python/commit/1804ca39a678433293158ec066d44c30eeb8e23b
-
+        🔄 Public: return a hardcoded greeting.
         """
 
-        session = await self.runner.session_service.get_session(
-            app_name=self.orchestrator.name,
-            user_id=self.user_id,
-            session_id=session_id,
-        )
-
-        if session is None:
-            session = await self.runner.session_service.create_session(
-                app_name=self.orchestrator.name,
-                user_id=self.user_id,
-                session_id=session_id,
-                state={},
-            )
-
-        content = types.Content(role="user", parts=[types.Part.from_text(text=query)])
-
-        last_event = None
-        async for event in self.runner.run_async(
-            user_id=self.user_id, session_id=session.id, new_message=content
-        ):
-            last_event = event
-
-        if not last_event or not last_event.content or not last_event.content.parts:
-            return ""
-
-        return "\n".join([p.text for p in last_event.content.parts if p.text])
+        return f"Hello {self.name}, how can I help you today?"

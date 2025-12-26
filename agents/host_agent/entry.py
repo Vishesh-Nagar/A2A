@@ -7,7 +7,7 @@ from server.server import A2AServer
 from models.agent import AgentCard, AgentCapabilities, AgentSkill
 from agents.host_agent.orchestrator import OrchestratorAgent, OrchestratorTaskManager
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 

@@ -183,7 +183,7 @@ class OrchestratorTaskManager(InMemoryTaskManager):
         3. Append response to history, mark completed
         4. Return a SendTaskResponse with the full Task
         """
-        logger.info(f"OrchestratorTaskManager received task {request.params.id}")
+        # logger.info(f"OrchestratorTaskManager received task {request.params.id}")
 
         task = await self.upsert_task(request.params)
 

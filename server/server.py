@@ -88,7 +88,6 @@ class A2AServer:
         try:
 
             body = await request.json()
-            print("\n🔍 Incoming JSON:", json.dumps(body, indent=2))
 
             json_rpc = A2ARequest.validate_python(body)
 

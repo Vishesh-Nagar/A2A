@@ -33,9 +33,6 @@ class A2AClient:
 
         request = SendTaskRequest(id=uuid4().hex, params=TaskSendParams(**payload))
 
-        print("\n📤 Sending JSON-RPC request:")
-        print(json.dumps(request.model_dump(), indent=2))
-
         response = await self._send_request(request)
         return Task(**response["result"])
 
