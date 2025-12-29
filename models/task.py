@@ -44,6 +44,7 @@ class TaskSendParams(BaseModel):
 
     sessionId: str = Field(default_factory=lambda: uuid4().hex)
 
+    sender_agent: str
     message: Message
     historyLength: int | None = None
     metadata: dict[str, Any] | None = None

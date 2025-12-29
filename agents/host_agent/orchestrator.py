@@ -32,7 +32,7 @@ class OrchestratorAgent:
     def __init__(self, agent_cards: list[AgentCard]):
 
         self.connectors = {
-            card.name: AgentConnector(card.name, card.url) for card in agent_cards
+            card.name: AgentConnector(card.name, card.url, sender_agent="orchestrator_agent") for card in agent_cards
         }
 
         self._agent = self._build_agent()

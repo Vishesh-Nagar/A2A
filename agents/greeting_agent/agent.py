@@ -96,7 +96,7 @@ class GreetingAgent:
 
             if key not in self.connectors:
                 self.connectors[key] = AgentConnector(
-                    name=matched.name, base_url=matched.url
+                    name=matched.name, base_url=matched.url, sender_agent="GreetingAgent"
                 )
             connector = self.connectors[key]
 

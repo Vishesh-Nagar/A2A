@@ -3,6 +3,7 @@ import logging
 
 from client.client import A2AClient
 from models.task import Task
+from utilities.rpc_logger import RpcLogger
 
 logger = logging.getLogger(__name__)
 
@@ -15,16 +16,18 @@ class AgentConnector:
         client (A2AClient): HTTP client pointing at the agent's URL.
     """
 
-    def __init__(self, name: str, base_url: str):
+    def __init__(self, name: str, base_url: str, sender_agent: str):
         """
         Initialize the connector for a specific remote agent.
 
         Args:
             name (str): Identifier for the agent (e.g., "TellTimeAgent").
             base_url (str): The HTTP endpoint (e.g., "http://localhost:10000").
+            sender_agent (str): Name of the sending agent.
         """
 
         self.name = name
+        self.sender_agent = sender_agent
 
         self.client = A2AClient(url=base_url)
 
@@ -47,8 +50,11 @@ class AgentConnector:
         payload = {
             "id": task_id,
             "sessionId": session_id,
+            "sender_agent": self.sender_agent,
             "message": {"role": "user", "parts": [{"type": "text", "text": message}]},
         }
+
+        RpcLogger.log_interaction(self.sender_agent, self.name, payload, "send")
 
         task_result = await self.client.send_task(payload)
 

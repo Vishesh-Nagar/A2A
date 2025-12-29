@@ -39,6 +39,7 @@ async def cli(agent: str, session: str, history: bool):
         payload = {
             "id": uuid4().hex,
             "sessionId": session_id,
+            "sender_agent": "user",
             "message": {"role": "user", "parts": [{"type": "text", "text": prompt}]},
         }
 

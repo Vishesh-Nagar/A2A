@@ -5,6 +5,7 @@ from models.agent import AgentCard
 from models.request import A2ARequest, SendTaskRequest
 from models.json_rpc import JSONRPCResponse, InternalError
 from server import task_manager
+from utilities.rpc_logger import RpcLogger
 
 import json
 import logging
@@ -90,6 +91,12 @@ class A2AServer:
             body = await request.json()
 
             json_rpc = A2ARequest.validate_python(body)
+
+            # Log the received request
+            if isinstance(json_rpc, SendTaskRequest):
+                sender = json_rpc.params.sender_agent
+                receiver = self.agent_card.name
+                RpcLogger.log_interaction(sender, receiver, body, "receive")
 
             if isinstance(json_rpc, SendTaskRequest):
                 result = await self.task_manager.on_send_task(json_rpc)
